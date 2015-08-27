@@ -7,14 +7,14 @@
   </div>
 </div>
 
-
 <table class="table">
   
   <?php
     $headers = [
       $this->Paginator->sort('title', 'Film'),
       $this->Paginator->sort('year', 'Released'),
-      $this->Paginator->sort('Screenings.screened', 'Watched')
+      $this->Paginator->sort('Screenings.screened', 'Watched'),
+      ''
     ]
   ?>
   
@@ -52,7 +52,8 @@
           '<div>' . $film->title . '</div>
           <div>' . $translation . '</div>',
           $film->year,
-          $screenings
+          $screenings,
+          $this->Html->link('Edit', ['action' => 'edit', $film->id])
         ];
         
         $rows[] = $row;

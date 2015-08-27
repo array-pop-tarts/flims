@@ -15,7 +15,7 @@
   <?= $this->Form->input('translation.title', ['label' => 'Translation']) ?>
   
   <?= $this->Form->label('year', 'Released') ?>
-  <?= $this->Form->year('year', ['dateFormat' => 'Y', 'minYear' => 1900, 'maxYear' => date('Y'), 'default' => date('Y')]) ?>
+  <?= $this->Form->year('year', ['dateFormat' => 'Y', 'minYear' => 1900, 'maxYear' => date('Y'), 'default' => date('Y'), 'empty' => false]) ?>
   
   <?= $this->Form->input('screenings.0.screened', ['label' => 'Screened']) ?>
   <?= $this->Form->input('screenings.0.location_id', ['label' => 'At', 'options' => $locations, 'empty' => '--']) ?>

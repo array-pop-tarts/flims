@@ -5,7 +5,7 @@ namespace App\Controller;
 class FilmsController extends AppController
 {
     public $paginate = [
-      'sortWhiteList' => ['title, year']
+      'sortWhiteList' => ['title', 'year', 'Screenings.screened']
     ];
     
     public function index() {
