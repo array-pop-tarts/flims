@@ -1,0 +1,65 @@
+@import "_imports";
+@import "_bootstrap";
+
+// ----- GLOBAL ------------------------------------------------------------------
+
+h1 {
+  margin: 0;
+}
+
+// ----- BUTTONS ------------------------------------------------------------------
+
+.btn {
+  border-radius: 0;
+}
+
+// ----- FORMS ------------------------------------------------------------------
+
+.form-control {
+  border-radius: 0;
+}
+
+fieldset {
+  background: $brand-warning;
+  padding: $panel-body-padding;
+  
+  > fieldset {
+    background: $brand-success;
+    margin-bottom: 10px;
+    
+    label {
+      color: #fff;
+      
+      &.key {
+        color: $brand-warning;
+        font-size: $font-size-h2;
+        margin-bottom: 0;
+        line-height: normal;
+      }
+    }
+  }
+  
+  legend {
+    background: $brand-primary;
+    color: #fff;
+    border: none;
+    margin-left: -$panel-body-padding * 2;
+    margin-bottom: 0;
+    padding: $panel-body-padding;
+  }
+}
+
+.select {
+  > label {
+    padding-right: 20px;
+  }
+  
+  > .checkbox {
+    display: inline-block;
+    margin-right: 20px;
+  }
+}
+
+.submit {
+  clear: both;
+}

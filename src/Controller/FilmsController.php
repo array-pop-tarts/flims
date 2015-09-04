@@ -11,8 +11,7 @@ class FilmsController extends AppController
     public function index() {
       
       $films = $this->Films->find('all')
-        ->contain(['Translations', 'Screenings' => ['Locations', 'Viewers']])
-        ->order('Films.title');
+        ->contain(['Translations', 'Screenings' => ['Locations', 'Viewers']]);
         
       $count = $films->count();
         

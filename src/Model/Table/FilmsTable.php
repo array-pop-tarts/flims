@@ -17,11 +17,10 @@ class FilmsTable extends Table
     $this->addBehavior('Timestamp');
   }
   
-  //public function beforeFind(Event $event, Query $query, array $options, $primary) {
-  //  $order = $query->clause('order');
-  //  if ($order === null || !count($order)) {
-  //    $query->order('title DESC');
-  //  }
-  //  return parent::beforeFind($event, $query, $options, $primary);
-  //}
+  public function beforeFind(Event $event, Query $query, \ArrayObject $options, $primary) {
+    $order = $query->clause('order');
+    if ($order === null || !count($order)) {
+      $query->order(['Films.released DESC', 'Films.title']);
+    }
+  }
 }

@@ -32,8 +32,6 @@ class AppView extends View
     public function initialize()
     {
       parent::initialize();
-      $this->loadHelper('Html');
-      $this->loadHelper('Form');
       $this->loadHelper('Flash');
       $this->loadHelper('Number');
       $this->loadHelper('Text');

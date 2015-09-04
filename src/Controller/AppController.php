@@ -40,4 +40,20 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Paginator');
     }
+    
+    public $helpers = [
+      'Html' => [
+        'className' => 'Bootstrap.BootstrapHtml',
+        'useFontAwesome' => true
+      ],
+      'Form' => [
+        'className' => 'Bootstrap.BootstrapForm'
+      ],
+      'Paginator' => [
+        'className' => 'Bootstrap.BootstrapPaginator'
+      ],
+      'Modal' => [
+        'className' => 'Bootstrap.BootstrapModal'
+      ]
+    ];
 }

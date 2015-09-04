@@ -12,7 +12,7 @@
   <?php
     $headers = [
       $this->Paginator->sort('title', 'Film'),
-      $this->Paginator->sort('year', 'Released'),
+      $this->Paginator->sort('released'),
       $this->Paginator->sort('Screenings.screened', 'Watched'),
       ''
     ]

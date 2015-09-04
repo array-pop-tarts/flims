@@ -8,8 +8,7 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('template.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -20,13 +19,14 @@
             <span><?= $this->fetch('title') ?></span>
         </div>
     </header>
-    <div id="container">
+    <div class="container">
 
         <div id="content">
-            <?= $this->Flash->render() ?>
-
             <div class="row">
-                <?= $this->fetch('content') ?>
+                <div class="col-xs-24">
+                    <?= $this->Flash->render() ?>
+                    <?= $this->fetch('content') ?>
+                </div>
             </div>
         </div>
         <footer>
