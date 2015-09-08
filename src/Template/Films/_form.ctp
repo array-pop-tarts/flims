@@ -179,10 +179,11 @@
             <?= $this->Form->input("screenings.$sKey.id") ?>
           </div>
           <div class="col-xs-5">
+            <?php $defaultScreened = ($screening->screened) ? $screening->screened : date('Y-m-d'); ?>
             <?= $this->Form->input("screenings.$sKey.screened", [
               'label' => false,
               'type' => 'text',
-              'dateFormat' => 'Ymd',
+              'value' => $this->Time->format($defaultScreened, 'Y-MM-dd'),
               'class' => 'datepicker'
             ]) ?>
           </div>
