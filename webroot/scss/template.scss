@@ -3,6 +3,11 @@
 
 // ----- GLOBAL ------------------------------------------------------------------
 
+.container {
+  background: $gray-base;
+  padding-bottom: $grid-gutter-width / 2;
+}
+
 h1 {
   margin: 0;
 }
@@ -13,25 +18,48 @@ h1 {
   border-radius: 0;
 }
 
+span.btn {
+  cursor: default;
+  
+  &.btn-success {
+    &:hover {
+      color: $btn-success-color;
+      background: $btn-success-bg;
+      border: 1px solid $btn-success-border;
+    }
+  }
+  
+}
+
 // ----- FORMS ------------------------------------------------------------------
 
 .form-control {
   border-radius: 0;
+  
+  &[readonly] {
+    background: darken($success, 10%);
+    box-shadow: none;
+    border: 1px solid darken($success, 12%);
+    
+    &::-moz-placeholder {
+      color: darken($success, 17%);
+    }
+  }
 }
 
 fieldset {
-  background: $brand-warning;
+  background: $warning;
   padding: $panel-body-padding;
   
   > fieldset {
-    background: $brand-success;
+    background: $success;
     margin-bottom: 10px;
     
     label {
       color: #fff;
       
       &.key {
-        color: $brand-warning;
+        color: $warning;
         font-size: $font-size-h2;
         margin-bottom: 0;
         line-height: normal;
@@ -40,7 +68,7 @@ fieldset {
   }
   
   legend {
-    background: $brand-primary;
+    background: $primary;
     color: #fff;
     border: none;
     margin-left: -$panel-body-padding * 2;
@@ -57,9 +85,92 @@ fieldset {
   > .checkbox {
     display: inline-block;
     margin-right: 20px;
+    
+    &:last-child {
+      label {
+        color: darken($success, 17%);
+      }
+    }
   }
 }
 
 .submit {
   clear: both;
+  
+  .form-group {
+    margin: 0;
+    
+    input {
+      width: 100%;
+      border: none;
+    }
+  }
+}
+
+.ui-datepicker-title {
+  select {
+    color: $text-color;
+    font-family: $font-family-base !important;
+    font-weight: normal;
+  }
+}
+.ui-widget-header {
+  .ui-icon {
+    background-image: url('/img/jquery-ui/ui-icons_cccccc_256x240.png') !important;
+  }
+}
+.ui-widget-content {
+  background-color: darken($gray-base, 5%) !important;
+  
+  table {
+    thead {
+      th {
+        font-family: $font-family-base;
+      }
+    }
+  }
+}
+
+// ----- TABLES ------------------------------------------------------------------
+
+.table {
+  
+  thead {
+    background: $neutral;
+  }
+  
+  tbody {
+    > tr {
+      > td {
+        vertical-align: middle;
+        background: $warning;
+        border-bottom: 2px solid darken($warning, 20%);
+        
+      }
+      
+      &:last-child {
+        td {
+          border: none;
+        }
+      }
+    }
+    
+    &.rowlink {
+      tr:hover {
+        td {
+          background: darken($warning, 5%);
+          
+          .btn-success {
+            background: darken($btn-success-bg, 6%);
+            border: 1px solid darken($btn-success-border, 5%);
+          }
+        }
+      }
+    }
+  }
+  
+  .translation {
+    color: $gray;
+  }
+  
 }

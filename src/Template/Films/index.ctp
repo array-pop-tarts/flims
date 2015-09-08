@@ -1,9 +1,15 @@
+<?php $this->Html->scriptStart(['block' => true]) ?>
+<?= '
+  $("tbody.rowlink").rowlink()
+' ?>
+<?php $this->Html->scriptEnd() ?>
+
 <div class="row">
   <div class="col-xs-12">
     <h1>Films (<?= $count ?>)</h1>
   </div>
   <div class="col-xs-12">
-    <?= $this->Html->link('Add Film', ['action' => 'add'], ['class' => 'btn']) ?>
+    <?= $this->Html->link('Add Film', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
   </div>
 </div>
 
@@ -11,10 +17,10 @@
   
   <?php
     $headers = [
-      $this->Paginator->sort('title', 'Film'),
-      $this->Paginator->sort('released'),
-      $this->Paginator->sort('Screenings.screened', 'Watched'),
-      ''
+      ['' => ['width' => '5%']],
+      [$this->Paginator->sort('title', 'Film') => ['width' => '50%']],
+      [$this->Paginator->sort('released') => ['class' => 'text-center', 'width' => '10%']],
+      [$this->Paginator->sort('Screenings.screened', 'Watched') => ['width' => '35%']],
     ]
   ?>
   
@@ -22,11 +28,22 @@
     <?= $this->Html->tableHeaders($headers) ?>
   </thead>
   
-  <tbody>
+  <tbody class="rowlink" data-link="row">
     <?php $rows = []; ?>
     <?php foreach ($films as $film): ?>
       <?php
-        $translation = ($film->translation) ? $film->translation->title : '';
+        
+        $media = [];
+        foreach ($film->media as $medium) {
+          $media[] = '<span class="btn btn-success">' . substr($medium->name, 0, 1) . '</span>';
+        }
+        $media = implode("", $media);
+        
+        $title = [];
+        $title[] = $film->title;
+        if ($film->translation)
+          $title[] = '<em class="translation">' . $film->translation->title . '</em>';
+        $title = implode("<br>", $title);
         
         $screenings = [];
         foreach ($film->screenings as $screening) {
@@ -49,11 +66,14 @@
         $screenings = implode("<br>", $screenings);
         
         $row = [
-          '<div>' . $film->title . '</div>
-          <div>' . $translation . '</div>',
-          $film->year,
-          $screenings,
-          $this->Html->link('Edit', ['action' => 'edit', $film->id])
+          $media,
+          $this->Html->link(
+            $title,
+            ['action' => 'edit', $film->id],
+            ['escape' => false]
+          ),
+          [$film->released, ['class' => 'text-center']],
+          $screenings
         ];
         
         $rows[] = $row;

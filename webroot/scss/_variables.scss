@@ -8,22 +8,23 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$gray-base:              #000 !default;
+$gray-base:              #3E414A !default;
 $gray-darker:            lighten($gray-base, 13.5%) !default; // #222
 $gray-dark:              lighten($gray-base, 20%) !default;   // #333
-$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray:                   #4D4F5B; //lighten($gray-base, 33.5%) !default; // #555
 $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary:         #CF4857 !default;
-$brand-success:         #16a79d !default;
-$brand-info:            #80628b !default;
-$brand-warning:         #F5AC43 !default;
-$brand-danger:          #F7624A !default;
+
+
+$primary:         #CF4857 !default;
+$success:         #16a79d !default;
+$info:            #80628b !default;
+$warning:         #F5AC43 !default;
+$danger:          #F7624A !default;
+$neutral:         #1C6A81 !default;
 
 $pink: #DD557B;
-$blue: #1C6A81;
-$dark-bg: #3E414A;
 
 
 //== Scaffolding
@@ -31,12 +32,12 @@ $dark-bg: #3E414A;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #4D4F5B !default;
+$body-bg:               $gray !default;
 //** Global text color on `<body>`.
-$text-color:            $gray-dark !default;
+$text-color:            $gray-base !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color:            $info !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link hover decoration.
@@ -118,7 +119,7 @@ $border-radius-small:       3px !default;
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff !default;
 //** Global background color for active items (e.g., navs or dropdowns).
-$component-active-bg:       $brand-primary !default;
+$component-active-bg:       $primary !default;
 
 //** Width of the `border` for generating carets that indicator dropdowns.
 $caret-width-base:          4px !default;
@@ -158,23 +159,23 @@ $btn-default-bg:                 #fff !default;
 $btn-default-border:             #ccc !default;
 
 $btn-primary-color:              #fff !default;
-$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-bg:                 $primary !default;
 $btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 
 $btn-success-color:              #fff !default;
-$btn-success-bg:                 $brand-success !default;
+$btn-success-bg:                 $success !default;
 $btn-success-border:             darken($btn-success-bg, 5%) !default;
 
 $btn-info-color:                 #fff !default;
-$btn-info-bg:                    $brand-info !default;
+$btn-info-bg:                    $info !default;
 $btn-info-border:                darken($btn-info-bg, 5%) !default;
 
 $btn-warning-color:              #fff !default;
-$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-bg:                 $warning !default;
 $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 
 $btn-danger-color:               #fff !default;
-$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-bg:                  $danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 $btn-link-disabled-color:        $gray-light !default;
@@ -465,8 +466,8 @@ $pagination-hover-bg:                  $gray-lighter !default;
 $pagination-hover-border:              #ddd !default;
 
 $pagination-active-color:              #fff !default;
-$pagination-active-bg:                 $brand-primary !default;
-$pagination-active-border:             $brand-primary !default;
+$pagination-active-bg:                 $primary !default;
+$pagination-active-border:             $primary !default;
 
 $pagination-disabled-color:            $gray-light !default;
 $pagination-disabled-bg:               #fff !default;
@@ -576,15 +577,15 @@ $popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%
 //** Default label background color
 $label-default-bg:            $gray-light !default;
 //** Primary label background color
-$label-primary-bg:            $brand-primary !default;
+$label-primary-bg:            $primary !default;
 //** Success label background color
-$label-success-bg:            $brand-success !default;
+$label-success-bg:            $success !default;
 //** Info label background color
-$label-info-bg:               $brand-info !default;
+$label-info-bg:               $info !default;
 //** Warning label background color
-$label-warning-bg:            $brand-warning !default;
+$label-warning-bg:            $warning !default;
 //** Danger label background color
-$label-danger-bg:             $brand-danger !default;
+$label-danger-bg:             $danger !default;
 
 //** Default label text color
 $label-color:                 #fff !default;
@@ -662,15 +663,15 @@ $progress-bar-color:          #fff !default;
 $progress-border-radius:      $border-radius-base !default;
 
 //** Default progress bar color
-$progress-bar-bg:             $brand-primary !default;
+$progress-bar-bg:             $primary !default;
 //** Success progress bar color
-$progress-bar-success-bg:     $brand-success !default;
+$progress-bar-success-bg:     $success !default;
 //** Warning progress bar color
-$progress-bar-warning-bg:     $brand-warning !default;
+$progress-bar-warning-bg:     $warning !default;
 //** Danger progress bar color
-$progress-bar-danger-bg:      $brand-danger !default;
+$progress-bar-danger-bg:      $danger !default;
 //** Info progress bar color
-$progress-bar-info-bg:        $brand-info !default;
+$progress-bar-info-bg:        $info !default;
 
 
 //== List group
@@ -726,8 +727,8 @@ $panel-default-border:        #ddd !default;
 $panel-default-heading-bg:    #f5f5f5 !default;
 
 $panel-primary-text:          #fff !default;
-$panel-primary-border:        $brand-primary !default;
-$panel-primary-heading-bg:    $brand-primary !default;
+$panel-primary-border:        $primary !default;
+$panel-primary-heading-bg:    $primary !default;
 
 $panel-success-text:          $state-success-text !default;
 $panel-success-border:        $state-success-border !default;

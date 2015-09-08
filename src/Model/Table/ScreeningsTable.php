@@ -3,6 +3,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 class ScreeningsTable extends Table
 {
@@ -11,8 +12,15 @@ class ScreeningsTable extends Table
     $this->belongsTo('Films');
     $this->belongsTo('Locations');
     $this->belongsToMany('Viewers');
-   
-    $this->addBehavior('Timestamp');
     
+    $this->addBehavior('Timestamp');
   }
+  
+  public function validationDefault(Validator $validator) {
+    $validator
+      ->notEmpty('screened', 'Enter a date');
+    
+    return $validator;
+  }
+  
 }
