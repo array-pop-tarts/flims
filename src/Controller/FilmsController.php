@@ -60,16 +60,13 @@ class FilmsController extends AppController
     if ($this->request->is(['post', 'put'])) {
       
       $screeningIds = [];
-      
       foreach ($this->request->data['screenings'] as $screeningKey => $screening) {
-        
-        // TODO validate unique location
+        // Add new location
         if (! empty($screening['new_location'])) {
           $this->request->data['screenings'][$screeningKey]['location_id'] =
             $this->Films->Screenings->Locations->addOnTheFly(trim($screening['new_location']));
         }
-        
-        // TODO validate unique viewers
+        // Add new viewers
         if (! empty($screening['new_viewers'])) {
           $newViewers = explode(",", $screening['new_viewers']);
           foreach ($newViewers as $viewerName) {
@@ -77,7 +74,6 @@ class FilmsController extends AppController
               $this->Films->Screenings->Viewers->addOnTheFly(trim($viewerName));
           }
         }
-        
         $screeningIds[] = $screening['id'];
       }
       
@@ -88,7 +84,6 @@ class FilmsController extends AppController
           $this->Films->Screenings->delete($screening);
         }
       }
-      
       // Delete erased translation
       if (empty($this->request->data['translation']['title'])) {
         if (!empty($film->translation)) {
