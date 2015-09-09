@@ -40,15 +40,18 @@
       
       $this.addNumberToNewRow("name", "screenings[", itemId);
     });
+    
     newFieldset.find("select").each(function() {
       var $this = $(this);
       $this.find("option").removeAttr("selected");
       $this.addNumberToNewRow("id", "screenings-", itemId);
       $this.addNumberToNewRow("name", "screenings[", itemId);
     });
+    
     newFieldset.find("[type=checkbox]").each(function() {
       $(this).attr("checked", false);
     });
+    
     newFieldset.find(".checkbox").children("label").each(function() {
       var $this = $(this);
       $this.addNumberToNewRow("for", "screenings-", itemId);
@@ -121,7 +124,6 @@
     this.attr(attribute, this.attr(attribute).replace(stringPart + lastId, stringPart + (parseInt(lastId) + 1)));
   }
   
-  
 ' ?>
 <?php $this->Html->scriptEnd() ?>
 
@@ -132,9 +134,15 @@
     <?= $this->Form->hidden('id') ?>
     
     <div class="row">
+      
       <div class="col-xs-22">
-        <?= $this->Form->input('title', ['placeholder' => 'Original Title', 'label' => false,'class' => 'input-lg']) ?>
+        <?= $this->Form->input('title', [
+          'placeholder' => 'Original Title',
+          'label' => false,
+          'class' => 'input-lg'
+        ]) ?>
       </div>
+      
       <div class="col-xs-2">
         <?php
           if ($film->id) {
@@ -160,24 +168,44 @@
     </div>
     
     <div class="row">
+      
       <div class="col-xs-14">
-        <?= $this->Form->input('translation.title', ['placeholder' => 'Translation', 'label' => false]) ?>
+        <?= $this->Form->input('translation.title', [
+          'placeholder' => 'Translation',
+          'label' => false
+        ]) ?>
       </div>
+      
       <div class="col-xs-4">
-        <?= $this->Form->input('released', ['options' => $years, 'default' => date('Y'), 'empty' => false, 'label' => false]) ?>
+        <?= $this->Form->input('released', [
+          'options' => $years,
+          'default' => date('Y'),
+          'empty' => false,
+          'label' => false
+        ]) ?>
       </div>
+      
       <div class="col-xs-6">
-        <?= $this->Form->input('media._ids', ['multiple' => 'checkbox', 'options' => $media, 'label' => false]) ?>
+        <?= $this->Form->input('media._ids', [
+          'multiple' => 'checkbox',
+          'options' => $media,
+          'label' => false
+        ]) ?>
       </div>
+      
     </div>
     
     <?php foreach($film->screenings as $sKey => $screening): ?>
       <fieldset id="fieldset-<?= $sKey ?>" class="screening-fieldset">
         <div class="row">
+          
           <div class="col-xs-1">
-            <label class="key"><?= $sKey + 1 ?></label>
+            <label class="key">
+              <?= $sKey + 1 ?>
+            </label>
             <?= $this->Form->input("screenings.$sKey.id") ?>
           </div>
+          
           <div class="col-xs-5">
             <?php $defaultScreened = ($screening->screened) ? $screening->screened : date('Y-m-d'); ?>
             <?= $this->Form->input("screenings.$sKey.screened", [
@@ -187,6 +215,7 @@
               'class' => 'datepicker'
             ]) ?>
           </div>
+          
           <div class="col-xs-8">
             <?= $this->Form->input("screenings.$sKey.location_id", [
               'label' => false,
@@ -195,37 +224,61 @@
               'class' => 'location-select'
             ]) ?>
           </div>
+          
           <div class="col-xs-8">
-            <?= $this->Form->input("screenings.$sKey.new_location", ['label' => false, 'placeholder' => 'New Venue', 'readonly' => true]) ?>
+            <?= $this->Form->input("screenings.$sKey.new_location", [
+              'label' => false,
+              'placeholder' => 'New Venue',
+              'readonly' => true
+            ]) ?>
           </div>
+          
           <div class="col-xs-2">
-            <?php $disabledClass = (count($film->screenings) < 2) ? 'disabled' : '' ?>
+            <?php $disabledScreeningClass = (count($film->screenings) < 2) ? 'disabled' : '' ?>
             <?= $this->Html->link(
               $this->Html->icon('minus'),
               ['#'],
               [
-                'class' => "btn btn-success remove-screening $disabledClass pull-right",
+                'class' => "btn btn-success remove-screening $disabledScreeningClass pull-right",
                 'id' => "remove-screening-$sKey",
                 'escape' => false
               ]
             ) ?>
           </div>
+          
         </div>
+        
         <div class="viewers">
-          <?= $this->Form->input("screenings.$sKey.viewers._ids", ['label' => false, 'options' => $viewers, 'multiple' => 'checkbox']) ?>
+          <?= $this->Form->input("screenings.$sKey.viewers._ids", [
+            'label' => false,
+            'options' => $viewers,
+            'multiple' => 'checkbox'
+          ]) ?>
         </div>
+        
         <div class="row new-viewers" id="new-viewers-<?= $sKey ?>" style="display: none">
           <div class="col-xs-offset-8 col-xs-8">
-            <?= $this->Form->input("screenings.$sKey.new_viewers", ['label' => false, 'placeholder' => 'New Friends', 'class' => 'input-sm']) ?>
+            <?= $this->Form->input("screenings.$sKey.new_viewers", [
+              'label' => false,
+              'placeholder' => 'New Friends',
+              'class' => 'input-sm'
+            ]) ?>
           </div>
         </div>
+        
       </fieldset>
     <?php endforeach ?>
+    
     <div class="pull-right">
       <?= $this->Html->link(
         $this->Html->icon('plus'),
         ['#'],
-        ['class' => 'btn btn-info', 'id' => 'add-screening', 'escape' => false, 'title' => 'Saw it again']
+        [
+          'class' => 'btn btn-info',
+          'id' => 'add-screening',
+          'escape' => false,
+          'title' => 'Saw it again!'
+        ]
       ) ?>
     </div>
     

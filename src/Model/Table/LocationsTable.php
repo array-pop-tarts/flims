@@ -13,6 +13,7 @@ class LocationsTable extends Table
     $this->hasMany('Screenings');
     
     $this->addBehavior('Timestamp');
+    $this->addBehavior('Insertable');
   }
   
   public function beforeFind(Event $event, Query $query, \ArrayObject $options, $primary) {
@@ -20,14 +21,6 @@ class LocationsTable extends Table
     if ($order === null || !count($order)) {
       $query->order(['Locations.name']);
     }
-  }
-  
-  public function addOnTheFly($name) {
-    $newLocation['name'] = $name;
-    $location = $this->newEntity();
-    $this->patchEntity($location, $newLocation);
-    $savedLocation = $this->save($location);
-    return $savedLocation->id;
   }
   
 }

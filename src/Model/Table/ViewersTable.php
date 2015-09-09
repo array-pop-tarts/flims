@@ -14,6 +14,7 @@ class ViewersTable extends Table
       ->dependent(true);
     
     $this->addBehavior('Timestamp');
+    $this->addBehavior('Insertable');
   }
   
   public function beforeFind(Event $event, Query $query, \ArrayObject $options, $primary) {
@@ -21,14 +22,6 @@ class ViewersTable extends Table
     if ($order === null || !count($order)) {
       $query->order(['Viewers.name']);
     }
-  }
-  
-  public function addOnTheFly($name) {
-    $newViewer['name'] = $name;
-    $viewer = $this->newEntity();
-    $this->patchEntity($viewer, $newViewer);
-    $savedViewer = $this->save($viewer);
-    return $savedViewer->id;
   }
   
 }

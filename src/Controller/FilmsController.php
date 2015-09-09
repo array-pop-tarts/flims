@@ -9,11 +9,11 @@ class FilmsController extends AppController
     $films = $this->Films->find('all')
       ->contain([
         'Translations',
+        'Media',
         'Screenings' => [
           'Locations',
           'Viewers'
-        ],
-        'Media'
+        ]
       ]);
       
     $count = $films->count();
@@ -25,11 +25,13 @@ class FilmsController extends AppController
   public function add() {
     
     $film = $this->Films->newEntity();
-    $screenings = $this->Films->Screenings->newEntity();
+      $film['translation'] = $this->Films->Translations->newEntity();
+      $film['media'] = [0 => $this->Films->Media->newEntity()];
     
-    $film['screenings'] = array(
-      0 => $screenings
-    );
+      $screenings = $this->Films->Screenings->newEntity();
+        $screenings['location'] = $this->Films->Screenings->Locations->newEntity();
+        $screenings['viewers'] = $this->Films->Screenings->Viewers->newEntity();
+      $film['screenings'] = [0 => $screenings];
     
     $this->set(compact('film'));
     $this->_form($film);
@@ -39,8 +41,11 @@ class FilmsController extends AppController
     $film = $this->Films->find('all', [
       'contain' => [
         'Translations',
-        'Screenings' => ['Viewers'],
-        'Media'
+        'Media',
+        'Screenings' => [
+          'Viewers',
+          'Locations'
+        ]
       ],
       'conditions' => ['Films.id' => $id]
     ]);
