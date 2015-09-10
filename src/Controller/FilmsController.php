@@ -16,10 +16,8 @@ class FilmsController extends AppController
         ]
       ]);
       
-    $count = $films->count();
-      
     $films = $this->paginate($films);
-    $this->set(compact('films', 'count'));
+    $this->set(compact('films'));
   }
   
   public function add() {

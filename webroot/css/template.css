@@ -4041,7 +4041,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Verdana", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
   color: #3e414a;
@@ -9950,7 +9950,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Verdana", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10072,7 +10072,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Verdana", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -10732,8 +10732,14 @@ button.close {
   padding-bottom: 15px;
 }
 
+.header {
+  padding: 16px;
+  background: #cf4857;
+}
+
 h1 {
   margin: 0;
+  color: #fff;
 }
 
 .btn {
@@ -10747,6 +10753,16 @@ span.btn.btn-success:hover {
   color: white;
   background: #16a79d;
   border: 1px solid #139088;
+}
+
+form.inline-form .form-group {
+  margin: 0;
+  float: left;
+  width: 94%;
+}
+form.inline-form .form-group + button {
+  margin-left: 1%;
+  width: 5%;
 }
 
 .form-control {
@@ -10779,14 +10795,6 @@ fieldset > fieldset label.key {
   margin-bottom: 0;
   line-height: normal;
 }
-fieldset legend {
-  background: #cf4857;
-  color: #fff;
-  border: none;
-  margin-left: -30px;
-  margin-bottom: 0;
-  padding: 15px;
-}
 
 .select > label {
   padding-right: 20px;
@@ -10812,7 +10820,7 @@ fieldset legend {
 
 .ui-datepicker-title select {
   color: #3e414a;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: "Verdana", Helvetica, Arial, sans-serif !important;
   font-weight: normal;
 }
 
@@ -10824,11 +10832,25 @@ fieldset legend {
   background-color: #32353c !important;
 }
 .ui-widget-content table thead th {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Verdana", Helvetica, Arial, sans-serif;
 }
 
 .table thead {
-  background: #1c6a81;
+  background: #80628b;
+  color: #f5ac43;
+}
+.table thead > tr > th {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 36px;
+}
+.table thead > tr > th:last-child {
+  padding-right: 16px;
+}
+.table thead > tr > th a {
+  color: #f5ac43;
+}
+.table thead > tr > th a:hover {
+  text-decoration: none;
 }
 .table tbody > tr > td {
   vertical-align: middle;

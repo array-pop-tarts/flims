@@ -4,13 +4,11 @@
 ' ?>
 <?php $this->Html->scriptEnd() ?>
 
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Films (<?= $count ?>)</h1>
-  </div>
-  <div class="col-xs-12">
-    <?= $this->Html->link('Add Film', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
-  </div>
+<div class="header">
+  <?= $this->Form->create(null, ['url' => 'index', 'type' => 'get', 'class' => 'inline-form']) ?>
+    <?= $this->Form->input('search', ['label' => false, 'class' => 'input-lg']) ?>
+    <?= $this->Form->button($this->Html->icon('search'), ['type' => 'submit', 'class' => 'btn btn-primary btn-lg', 'escape' => false]) ?>
+  <?= $this->Form->end() ?>
 </div>
 
 <table class="table">
@@ -18,9 +16,20 @@
   <?php
     $headers = [
       ['' => ['width' => '5%']],
-      [$this->Paginator->sort('title', 'Film') => ['width' => '50%']],
-      [$this->Paginator->sort('released') => ['class' => 'text-center', 'width' => '10%']],
+      [$this->Paginator->sort('title', $this->Html->icon('film'), ['escape' => false]) => ['width' => '48%']],
+      [$this->Paginator->sort('released', $this->Html->icon('star'), ['escape' => false]) => ['class' => 'text-center', 'width' => '10%']],
       [$this->Paginator->sort('Screenings.screened', 'Watched') => ['width' => '35%']],
+      [
+        $this->Html->link(
+          $this->Html->icon('plus'),
+          ['action' => 'add'],
+          [
+            'class' => 'btn btn-info btn-lg pull-right',
+            'escape' => false,
+            'title' => 'New Flim'
+          ]
+        ) => ['width' => '2%']
+      ]
     ]
   ?>
   
@@ -73,7 +82,7 @@
             ['escape' => false]
           ),
           [$film->released, ['class' => 'text-center']],
-          $screenings
+          [$screenings, ['colspan' => 2]]
         ];
         
         $rows[] = $row;

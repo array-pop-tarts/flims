@@ -127,10 +127,30 @@
 ' ?>
 <?php $this->Html->scriptEnd() ?>
 
+<?php $title = ($this->request->action == 'add') ? 'What I see?' : 'I see again?' ?>
+
+<div class="header">
+  <div class="row">
+    <div class="col-xs-18">
+      <h1><?= $title ?></h1>
+    </div>
+    <div class="col-xs-6">
+      <?= $this->Html->link(
+        $this->Html->icon('reply'),
+        ['action' => 'index'],
+        [
+          'class' => 'btn btn-primary btn-lg pull-right',
+          'escape' => false,
+          'title' => 'Return'
+        ]
+      ) ?>
+    </div>
+  </div>
+</div>
+
 <?= $this->Form->create($film) ?>
   
   <fieldset>
-    <legend><h1>Add a Film</h1></legend>
     <?= $this->Form->hidden('id') ?>
     
     <div class="row">

@@ -8,9 +8,16 @@
   padding-bottom: $grid-gutter-width / 2;
 }
 
+.header {
+  padding: $padding-large-horizontal;
+  background: $primary;
+}
+
 h1 {
   margin: 0;
+  color: #fff;
 }
+
 
 // ----- BUTTONS ------------------------------------------------------------------
 
@@ -32,6 +39,20 @@ span.btn {
 }
 
 // ----- FORMS ------------------------------------------------------------------
+
+form.inline-form {
+  
+  .form-group {
+    margin: 0;
+    float: left;
+    width: 94%;
+    
+    & + button {
+      margin-left: 1%;
+      width: 5%;
+    }
+  }
+}
 
 .form-control {
   border-radius: 0;
@@ -65,15 +86,6 @@ fieldset {
         line-height: normal;
       }
     }
-  }
-  
-  legend {
-    background: $primary;
-    color: #fff;
-    border: none;
-    margin-left: -$panel-body-padding * 2;
-    margin-bottom: 0;
-    padding: $panel-body-padding;
   }
 }
 
@@ -136,7 +148,27 @@ fieldset {
 .table {
   
   thead {
-    background: $neutral;
+    background: $info;
+    color: $warning;
+    
+    > tr {
+      > th {
+        font-family: $font-family-th;
+        font-size: $font-size-h1;
+        
+        &:last-child {
+          padding-right: $padding-large-horizontal;
+        }
+        
+        a {
+          color: $warning;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    
   }
   
   tbody {
