@@ -6,6 +6,19 @@ class FilmsController extends AppController
 {
   public function index() {
     
+    $conditions = [];
+    
+    if (! empty($this->request->query['title'])) {
+      $keywords = preg_split('/\s+/', trim($this->request->query['title']));
+      foreach ($keywords as $key => $keyword) {
+        $conditions['OR'][0]['AND'][$key]['Films.title LIKE'] = '%' . $keyword . '%';
+        $conditions['OR'][1]['AND'][$key]['Translations.title LIKE'] = '%' . $keyword . '%';
+      }
+    }
+    if (! empty($this->request->query['released'])) {
+      $conditions['Films.released'] = $this->request->query['released'];
+    }
+    
     $films = $this->Films->find('all')
       ->contain([
         'Translations',
@@ -14,10 +27,20 @@ class FilmsController extends AppController
           'Locations',
           'Viewers'
         ]
-      ]);
+      ])
+      ->where($conditions)
+    ;
+    
+    if (! empty($this->request->query['media'])) {
+      $films->matching('Media', function($q) {
+        return $q->where(['Media.id' => $this->request->query['media']]);
+      });
+    }
       
     $films = $this->paginate($films);
-    $this->set(compact('films'));
+    $years = $this->Films->years();
+    $media = $this->Films->Media->find('list')->toArray();
+    $this->set(compact('films', 'years', 'media'));
   }
   
   public function add() {

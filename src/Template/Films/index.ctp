@@ -5,9 +5,21 @@
 <?php $this->Html->scriptEnd() ?>
 
 <div class="header">
-  <?= $this->Form->create(null, ['url' => 'index', 'type' => 'get', 'class' => 'inline-form']) ?>
-    <?= $this->Form->input('search', ['label' => false, 'class' => 'input-lg']) ?>
-    <?= $this->Form->button($this->Html->icon('search'), ['type' => 'submit', 'class' => 'btn btn-primary btn-lg', 'escape' => false]) ?>
+  <?= $this->Form->create(null, ['action' => 'index', 'type' => 'get', 'class' => 'inline-form']) ?>
+    <div class="row">
+      <div class="col-xs-15">
+        <?= $this->Form->input('title', ['label' => false, 'class' => 'input-lg', 'placeholder' => 'What I see']) ?>
+      </div>
+      <div class="col-xs-3">
+        <?= $this->Form->input('released', ['label' => false, 'class' => 'input-lg', 'options' => $years, 'empty' => 'Year']) ?>
+      </div>
+      <div class="col-xs-4">
+        <?= $this->Form->input('media', ['label' => false, 'class' => 'input-lg', 'options' => $media, 'empty' => 'Media']) ?>
+      </div>
+      <div class="col-xs-2">
+        <?= $this->Form->button($this->Html->icon('search'), ['type' => 'submit', 'class' => 'btn btn-primary btn-lg pull-right', 'escape' => false]) ?>
+      </div>
+    </div>
   <?= $this->Form->end() ?>
 </div>
 

@@ -10755,14 +10755,16 @@ span.btn.btn-success:hover {
   border: 1px solid #139088;
 }
 
+form.inline-form .row {
+  margin-right: -7.5px;
+  margin-left: -7.5px;
+}
+form.inline-form .row [class*="col-"] {
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}
 form.inline-form .form-group {
   margin: 0;
-  float: left;
-  width: 94%;
-}
-form.inline-form .form-group + button {
-  margin-left: 1%;
-  width: 5%;
 }
 
 .form-control {

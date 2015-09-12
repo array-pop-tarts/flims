@@ -42,15 +42,18 @@ span.btn {
 
 form.inline-form {
   
+  .row {
+    margin-right: -($grid-gutter-width / 4);
+    margin-left: -($grid-gutter-width / 4);
+    
+    [class*="col-"] {
+      padding-left: ($grid-gutter-width / 4);
+      padding-right: ($grid-gutter-width / 4);
+    }
+  }
+  
   .form-group {
     margin: 0;
-    float: left;
-    width: 94%;
-    
-    & + button {
-      margin-left: 1%;
-      width: 5%;
-    }
   }
 }
 
