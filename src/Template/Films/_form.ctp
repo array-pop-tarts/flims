@@ -28,12 +28,12 @@
     newFieldset.find("input").each(function() {
       var $this = $(this);
       
-      if ($this.attr("type") != "checkbox")
-        $this.val("");
-      
       if ($this.attr("id")) {
         if ($this.attr("id") == "screenings-" + itemId + "-new-location")
           $this.attr("readonly", true);
+          
+        if ($this.attr("id") == "screenings-" + itemId + "-screened")
+          $this.val("' . date('Y-m-d') . '");
         
         $this.addNumberToNewRow("id", "screenings-", itemId);
       }
@@ -168,10 +168,12 @@
           if ($film->id) {
             $deleteLink = ['action' => 'delete', $film->id];
             $disabledDeleteClass = '';
+            $tabindex = '0';
           }
           else {
             $deleteLink = ['#'];
             $disabledDeleteClass = 'disabled';
+            $tabindex = '-1';
           }
         ?>
         <?= $this->Html->link(
@@ -181,7 +183,8 @@
             'class' => "btn btn-warning btn-lg pull-right $disabledDeleteClass",
             'escape' => false,
             'title' => 'Delete',
-            'confirm' => 'Delete "' . $film->title . '"?'
+            'confirm' => 'Delete "' . $film->title . '"?',
+            'tabindex' => $tabindex
           ]
         ) ?>
       </div>
@@ -190,6 +193,7 @@
     <div class="row">
       
       <div class="col-xs-14">
+        <?= $this->Form->input('translation.id') ?>
         <?= $this->Form->input('translation.title', [
           'placeholder' => 'Translation',
           'label' => false
@@ -231,7 +235,7 @@
             <?= $this->Form->input("screenings.$sKey.screened", [
               'label' => false,
               'type' => 'text',
-              'value' => $this->Time->format($defaultScreened, 'Y-MM-dd'),
+              'value' => $this->Time->format($defaultScreened, 'yyyy-MM-dd'),
               'class' => 'datepicker'
             ]) ?>
           </div>

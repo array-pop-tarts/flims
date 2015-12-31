@@ -8,6 +8,9 @@ class FilmsController extends AppController
     
     $conditions = [];
     
+    if (! empty($this->request->query['reset']))
+      $this->request->query = [];
+    
     if (! empty($this->request->query['title'])) {
       $keywords = preg_split('/\s+/', trim($this->request->query['title']));
       foreach ($keywords as $key => $keyword) {
@@ -31,6 +34,16 @@ class FilmsController extends AppController
       ->where($conditions)
     ;
     
+//SELECT 
+//CASE
+//    WHEN SUBSTRING_INDEX(title, ' ', 1) IN ('a', 'an', 'the') 
+//    THEN CONCAT( SUBSTRING( title, INSTR(title, ' ') + 1 ), ', ', SUBSTRING_INDEX(title, ' ', 1) ) 
+//    ELSE title 
+//    END AS title_article,
+//title AS original_title 
+//FROM films 
+//ORDER BY title_article
+
     if (! empty($this->request->query['media'])) {
       $films->matching('Media', function($q) {
         return $q->where(['Media.id' => $this->request->query['media']]);
@@ -80,6 +93,7 @@ class FilmsController extends AppController
     
     if ($this->request->is(['post', 'put'])) {
       
+      //pr($film);
       $screeningIds = [];
       foreach ($this->request->data['screenings'] as $screeningKey => $screening) {
         // Add new location
@@ -107,7 +121,7 @@ class FilmsController extends AppController
       }
       // Delete erased translation
       if (empty($this->request->data['translation']['title'])) {
-        if (!empty($film->translation)) {
+        if (!empty($film->translation->id)) {
           $translation = $this->Films->Translations->get($film->translation->id);
           $this->Films->Translations->delete($translation);
         }

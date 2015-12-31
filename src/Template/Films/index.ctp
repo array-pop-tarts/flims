@@ -7,7 +7,7 @@
 <div class="header">
   <?= $this->Form->create(null, ['action' => 'index', 'type' => 'get', 'class' => 'inline-form']) ?>
     <div class="row">
-      <div class="col-xs-15">
+      <div class="col-xs-14">
         <?= $this->Form->input('title', ['label' => false, 'class' => 'input-lg', 'placeholder' => 'What I see']) ?>
       </div>
       <div class="col-xs-3">
@@ -16,8 +16,9 @@
       <div class="col-xs-4">
         <?= $this->Form->input('media', ['label' => false, 'class' => 'input-lg', 'options' => $media, 'empty' => 'Media']) ?>
       </div>
-      <div class="col-xs-2">
-        <?= $this->Form->button($this->Html->icon('search'), ['type' => 'submit', 'class' => 'btn btn-primary btn-lg pull-right', 'escape' => false]) ?>
+      <div class="col-xs-3 text-right">
+        <?= $this->Form->button($this->Html->icon('search'), ['type' => 'submit', 'class' => 'btn btn-primary btn-lg', 'escape' => false]) ?>
+        <?= $this->Html->link($this->Html->icon('refresh'), ['?' => ['reset' => 1]], ['class' => 'btn btn-primary btn-lg', 'escape' => false]) ?>
       </div>
     </div>
   <?= $this->Form->end() ?>
@@ -28,7 +29,7 @@
   <?php
     $headers = [
       ['' => ['width' => '5%']],
-      [$this->Paginator->sort('title', $this->Html->icon('film'), ['escape' => false]) => ['width' => '48%']],
+      [$this->Paginator->sort('title_without_article', $this->Html->icon('film'), ['escape' => false]) => ['width' => '48%']],
       [$this->Paginator->sort('released', $this->Html->icon('star'), ['escape' => false]) => ['class' => 'text-center', 'width' => '10%']],
       [$this->Paginator->sort('Screenings.screened', 'Watched') => ['width' => '35%']],
       [
@@ -69,7 +70,7 @@
         $screenings = [];
         foreach ($film->screenings as $screening) {
           
-          $screeningInfo = [$this->Time->format($screening->screened, 'Y')];
+          $screeningInfo = [$this->Time->format($screening->screened, 'yyyy')];
           
           if ($screening->location)
             $screeningInfo[] = $screening->location->name;
@@ -103,11 +104,8 @@
     <?= $this->Html->tableCells($rows) ?>
   </tbody>
 </table>
-<div>
-  <?= $this->Paginator->prev('<< Previous'); ?>
-  <?= $this->Paginator->counter(
-    'Page {{page}} of {{pages}}, showing {{current}} records out of
-     {{count}} total, starting on record {{start}}, ending on {{end}}'
-  ); ?>
-  <?= $this->Paginator->next('Next >>'); ?>
-</div>
+<ul class="pagination">
+  <?= $this->Paginator->prev('<< Previous') ?>
+  <li><?= $this->Paginator->counter(['format' => 'range']) ?></li>
+  <?= $this->Paginator->next('Next >>') ?>
+</ul>

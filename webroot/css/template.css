@@ -10872,3 +10872,7 @@ fieldset > fieldset label.key {
 .table .translation {
   color: #4d4f5b;
 }
+
+.pagination .disabled a:hover {
+  text-decoration: none;
+}

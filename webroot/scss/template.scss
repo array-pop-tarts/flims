@@ -209,3 +209,15 @@ fieldset {
   }
   
 }
+
+// ----- PAGINATION ------------------------------------------------------------------
+
+.pagination {
+  .disabled {
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
